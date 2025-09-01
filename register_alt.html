@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Event Registration | RENEWSEC 2025</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    :root {
+      --gold: #e2b322;
+      --green: #1b5e20;
+      --green-2: #2e7d32;
+      --green-3: #2e6937;
+      --muted: #5b6470;
+      --rule: #e6ecea;
+      --brand-bg: #f6fb7f;
+      --ink: #0f172a;
+      --white: #ffffff;
+      --yellow: #e2b322;
+      --light-yellow: #f8e6a9;
+      --dark-yellow: #c99c1c;
+      --light-green: #e8f5e9;
+      --error-red: #dc3545;
+      --bs-highlight-bg: #fff3cd;
+    }
+
+    body {
+      background: var(--light-green);
+      font-family: 'Segoe UI', sans-serif;
+      color: var(--ink);
+    }
+
+    .section-title {
+      font-weight: 700;
+      color: var(--green-2);
+    }
+
+    .primary-clr {
+      color: var(--gold);
+    }
+
+    .card {
+      border-radius: 12px;
+      background: var(--white);
+    }
+
+    .form-label {
+      font-size: 0.95rem;
+      color: var(--green-3);
+    }
+
+    .form-control,
+    .form-select {
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      padding: 0.6rem 0.75rem;
+    }
+
+    .form-control:focus,
+    .form-select:focus {
+      border-color: var(--green-2);
+      box-shadow: 0 0 0 0.2rem rgba(46, 125, 50, 0.2);
+    }
+
+    .btn-brand {
+      background: var(--green-2);
+      color: var(--white);
+      border-radius: 8px;
+      padding: 0.6rem 1.5rem;
+      transition: background 0.3s ease;
+    }
+
+    .btn-brand:hover {
+      background: var(--green-3);
+    }
+
+    .btn-outline-brand {
+      border: 2px solid var(--gold);
+      color: var(--gold);
+      border-radius: 8px;
+      padding: 0.6rem 1.5rem;
+      transition: all 0.3s ease;
+    }
+
+    .btn-outline-brand:hover {
+      background: var(--gold);
+      color: var(--ink);
+    }
+
+    .grid-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.25rem;
+    }
+
+    .cls-yellow {
+      color: var(--gold);
+    }
+  </style>
+</head>
+<body>
+  <section class="py-5">
+    <div class="container">
+      <div class="card shadow-sm px-4 px-md-5 pb-5">
+        <h2 class="section-title py-4 text-center">
+          Participate Registration
+        </h2>
+        <p class="text-center mb-4 text-muted fs-5">
+          Please fill out the form below to register as a delegate, speaker, sponsor, or exhibitor for
+          <strong class="primary-clr">RENEWSEC 2025</strong>.<br />
+          Our team will get back to you shortly with confirmation and details.
+        </p>
+
+        <form role="form" method="POST" action="register_store.php" id="register_form" enctype="multipart/form-data">
+          <div class="grid-container">
+            <div>
+              <label for="fullname" class="form-label fw-semibold mb-2">Full Name</label>
+              <input type="text" class="form-control" id="fullname" name="fullname" placeholder="Enter your full name" />
+            </div>
+
+            <div>
+              <label for="organization" class="form-label fw-semibold">Organization</label>
+              <input type="text" class="form-control" id="organization" name="organization" placeholder="Organization / Company Name" />
+            </div>
+
+            <div>
+              <label for="email" class="form-label fw-semibold">Email Address</label>
+              <input type="email" class="form-control" id="email" name="email" placeholder="Your email address" />
+            </div>
+
+            <div>
+              <label for="phone" class="form-label fw-semibold">Phone Number</label>
+              <input type="tel" class="form-control" id="phone" placeholder="Mobile number" name="phone_no" />
+            </div>
+
+            <div>
+              <label for="designation" class="form-label fw-semibold">Designation</label>
+              <input type="text" class="form-control" id="designation" placeholder="Your designation" name="designation" />
+            </div>
+
+            <div>
+              <label for="city" class="form-label fw-semibold">City</label>
+              <input type="text" class="form-control" id="city" placeholder="City / Location" name="city" />
+            </div>
+
+            <div>
+              <label for="area_of_interest" class="form-label fw-semibold">Area of Interest</label>
+              <select class="form-select form-control" id="area_of_interest" name="area_of_interest">
+                <option value="" disabled selected>--Select Area of Interest--</option>
+                <option value="delegate">Delegate</option>
+                <option value="exhibitor">Exhibitor</option>
+                <option value="speaker">Speaker</option>
+                <option value="sponsor">Sponsor</option>
+              </select>
+            </div>
+
+            <!-- Speaker-only field -->
+            <div class="speaker-element d-none">
+              <label for="topic" class="form-label fw-semibold">Topic</label>
+              <select class="form-control" id="topic" name="topic">
+                <option value="" disabled selected>--Select Topic--</option>
+                <option value="opt1">Option 1</option>
+                <option value="opt2">Option 2</option>
+                <option value="opt3">Option 3</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Speaker-only uploads -->
+          <div class="my-4 grid-container speaker-element d-none">
+            <div>
+              <label for="profile_photo" class="form-label fw-semibold">Upload Photo</label>
+              <input type="file" name="profile_photo" class="form-control" id="profile_photo" />
+            </div>
+            <div>
+              <label for="profile" class="form-label fw-semibold">Upload Profile</label>
+              <input type="file" name="registrant_profile" class="form-control" id="profile" />
+            </div>
+          </div>
+
+          <!-- Speaker abstract -->
+          <div class="my-4 speaker-element d-none">
+            <label for="speaker_abstract" class="form-label fw-semibold">Describe Your Abstract</label>
+            <textarea class="form-control" id="speaker_abstract" name="speaker_abstract" rows="5" placeholder="Describe Your Abstract"></textarea>
+          </div>
+
+          <!-- Message -->
+          <div class="my-4">
+            <label for="message" class="form-label fw-semibold">Your Message</label>
+            <textarea class="form-control" id="message" name="message" rows="5" placeholder="Tell us anything else"></textarea>
+          </div>
+
+          <!-- Terms -->
+          <div class="mb-4">
+            <div class="d-flex gap-2">
+              <input type="checkbox" class="form-check-input" id="terms_agreement" name="terms_agreement" />
+              <label class="form-check-label text-uppercase" for="terms_agreement">
+                I acknowledge that this registration is <strong class="cls-yellow"><u>PAID</u></strong> and I agree to the event's Terms & Conditions.
+              </label>
+            </div>
+          </div>
+
+          <!-- Buttons -->
+          <div class="d-flex gap-2 justify-content-end align-items-center">
+            <a href="#brochure" class="btn btn-outline-brand fw-semibold">Download Event Brochure</a>
+            <button type="submit" class="btn btn-brand btn-lg fw-semibold register-btn">
+              <span>Submit Registration</span>
+              <div class="spinner-border spinner-border-sm d-none" role="status"></div>
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    // Toggle speaker fields
+    const areaSelect = document.getElementById('area_of_interest');
+    const speakerElements = document.querySelectorAll('.speaker-element');
+    areaSelect.addEventListener('change', () => {
+      if (areaSelect.value === 'speaker') {
+        speakerElements.forEach(el => el.classList.remove('d-none'));
+      } else {
+        speakerElements.forEach(el => el.classList.add('d-none'));
+      }
+    });
+  </script>
+</body>
+</html>
